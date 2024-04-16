@@ -10,10 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_06_083940) do
+ActiveRecord::Schema.define(version: 2024_04_13_181029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "expense_participants", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "expense_id"
+    t.decimal "amount_owed", precision: 10, scale: 2, default: "0.0"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["expense_id"], name: "index_expense_participants_on_expense_id"
+    t.index ["user_id"], name: "index_expense_participants_on_user_id"
+  end
+
+  create_table "expenses", force: :cascade do |t|
+    t.decimal "total_amount"
+    t.date "date"
+    t.string "description"
+    t.boolean "split_equally", default: true
+    t.bigint "paid_by_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["paid_by_id"], name: "index_expenses_on_paid_by_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -29,4 +50,5 @@ ActiveRecord::Schema.define(version: 2021_10_06_083940) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "expenses", "users", column: "paid_by_id"
 end
