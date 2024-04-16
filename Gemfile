@@ -5,6 +5,7 @@ ruby '3.0.0'
 
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
+gem 'devise_invitable', '~> 2.0.0'
 gem 'jbuilder', '~> 2.7'
 gem 'pg'
 gem 'puma', '~> 5.0'

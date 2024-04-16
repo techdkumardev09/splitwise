@@ -5,5 +5,7 @@ Rails.application.routes.draw do
   root to: "dashboard#index"
 
   resources :expenses, only: :create
-  resources :users, only: :index
+  resources :users, only: :index do
+    post :add_participant, on: :collection
+  end
 end

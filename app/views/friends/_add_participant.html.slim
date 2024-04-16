@@ -1,0 +1,18 @@
+#addParticipantModal.modal.fade(tabindex="-1")
+  .modal-dialog
+    .modal-content
+      .modal-header
+        h5.modal-title Add New Participant
+        button.btn-close aria-label="Close" data-bs-dismiss="modal" type="button"
+      .modal-body
+        = form_for User.new, url: add_participant_users_path, method: :post do |f|
+          .mb-3
+            = f.label :name, class: "form-label"
+            = f.text_field :name, class: "form-control", required: true
+          .mb-3
+            = f.label :email, class: "form-label"
+            = f.email_field :email, class: "form-control", required: true
+
+          .modal-footer
+            = f.button "Close", class: "btn btn-secondary", 'data-bs-dismiss': "modal"
+            = f.submit "Create", class: "btn btn-primary"
