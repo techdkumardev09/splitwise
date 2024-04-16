@@ -1,0 +1,31 @@
+.dashboard-wrapper
+  aside.side-bar-area
+    .friends-list
+      p.friends-list-header FRIENDS
+      - current_user.friends.each do |friend|
+        = link_to friend.name, friend_path(friend.id), class: 'friend-name'
+
+  .main-area
+    .top-bar
+      h1.top-bar-title Dashboard
+      .top-bar-actions
+        button.btn.btn-primary type="button" data-bs-toggle="modal" data-bs-target="#addParticipantModal"  Add New Participant
+        button.btn.btn-primary type="button" data-bs-toggle="modal" data-bs-target="#expenseModal"  Add an expense
+        button.btn.btn-secondary type="button"  Settle up
+    .expenses-list
+      - @expenses.each do |expense|
+        .expense-item
+          .item-lhs
+            p = expense.date
+            p = expense.description
+          .item-rhs
+            .you-details
+              p = "#{expense.paid_by_id == current_user.id ? 'you' : expense.paid_by_user.name} paid"
+              p = expense.total_amount
+            .you-details
+              p = "#{expense.paid_by_id == current_user.id ? 'you' : expense.paid_by_user.name} lent #{@friend.id == expense.paid_by_id ?  "you" : @friend.name }"
+              p = expense.amount_owed_by(@friend)
+          button.remove-btn ❌
+
+= render 'expenses/add_expense'
+= render 'friends/add_participant'

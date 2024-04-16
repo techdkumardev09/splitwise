@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   resources :users, only: :index do
     post :add_participant, on: :collection
   end
+  resources :friends, only: :show
 end
