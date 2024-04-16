@@ -1,0 +1,45 @@
+.dashboard-wrapper
+  aside.side-bar-area
+    .friends-list
+      p.friends-list-header FRIENDS
+      - @dashboard_data[:friends].each do |friend|
+        = link_to friend.name, friend_path(friend.id), class: 'friend-name'
+
+  .main-area
+    .top-bar
+      h1.top-bar-title Dashboard
+      .top-bar-actions
+        button.btn.btn-primary type="button" data-bs-toggle="modal" data-bs-target="#addParticipantModal"  Add New Participant
+        button.btn.btn-primary type="button" data-bs-toggle="modal" data-bs-target="#expenseModal"  Add an expense
+        button.btn.btn-secondary type="button"  Settle up
+
+    .dashboard-balances
+      .balances-bar
+        .balance-block
+          p total balance
+          p = @dashboard_data[:total_balance]
+        .balance-block
+          p you owe
+          p = @dashboard_data[:you_owe_amount]
+        .balance-block
+          p you are owed
+          p = @dashboard_data[:owed_to_you_amount]
+      .dashboard-detail
+        .detail-block
+          h2.detail-title you owe
+          - @dashboard_data[:you_owe_details].each do |owe_detail|
+            .user-detail
+              img.user-img alt="profile" src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png" /
+              .user-info
+                p = owe_detail[:name]
+                p  = "you owe = Rs. #{owe_detail[:amount]}"
+        .detail-block
+          h2.detail-title you are owed
+          - @dashboard_data[:owed_to_you_details].each do |owed_detail|
+            .user-detail
+              img.user-img alt="profile" src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png" /
+              .user-info
+                p = owed_detail[:name]
+                p  = "owes you = Rs. #{owed_detail[:amount]}"
+
+= render 'expenses/add_expense'

@@ -197,4 +197,12 @@
   font-weight: bold;
   margin: 0;
 }
+div #unequallySplitSection {
+  border: 1px solid grey;
+  padding: 10px;
+}
 /* Custom dashboard styles ends */
+
+#expenseErrorMessages {
+  display: none;
+}

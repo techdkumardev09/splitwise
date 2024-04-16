@@ -1,0 +1,35 @@
+.modal.fade#expenseModal aria-hidden="true" aria-labelledby="expenseModalLabel" tabindex="-1" 
+  .modal-dialog
+    .modal-content
+      .modal-header
+        h5#expenseModalLabel.modal-title Add an expense
+        button.btn-close aria-label="Close" data-bs-dismiss="modal" type="button"
+      .modal-body
+        .alert.alert-danger#expenseErrorMessages(role="alert")
+        .mb-3
+          label.form-label Amount
+          input.form-control type="number" placeholder="$0.00" name="total_amount" id="total_amount"
+        .mb-3
+          label.form-label Description
+          input.form-control type="textarea" placeholder="Enter description" name="description" id="description"
+        .mb-3
+          label.form-label Date
+          input.form-control type="date" name="date" id="date"
+
+        .mb-3
+          label.form-label Participants
+          select.form-select name="participants[]" id="participants" multiple="true"
+        .mb-3
+          label.form-label Split by
+          select.form-select name="split_by" id="split_by"
+            option value="equally" Equally
+            option value="unequally" Unequally
+        .mb-3.d-none#unequallySplitSection
+
+        .mb-3
+          label.form-label Paid by
+          select.form-select name="paid_by" id="paid_by" data-current_user_id="#{current_user.id}" data-current_user_name="#{current_user.name}"
+
+      .modal-footer
+        button.btn.btn-secondary data-bs-dismiss="modal" type="button" Close
+        button.btn.btn-primary.add-expense type="button" Save changes
