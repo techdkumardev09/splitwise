@@ -1,0 +1,25 @@
+default: &default
+  adapter: postgresql
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD']%>
+
+development:
+  <<: *default
+  reconnect: false
+  database: splitwise_development
+  pool: 5
+  host: localhost
+
+test:
+  <<: *default
+  reconnect: false
+  database: splitwise_test
+  host: localhost
+
+production:
+  <<: *default
+  reconnect: false
+  database: splitwise_production
+  host: <%= ENV['DB_HOST']%>
