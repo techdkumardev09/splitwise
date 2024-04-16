@@ -1,10 +1,11 @@
 header
   nav.navbar.navbar-expand-md.navbar-dark.fixed-top.bg-dark
     .container-fluid
-      a.navbar-brand href="#"  Splitwise
+      a.navbar-brand href="#{root_path}"  Splitwise
       button.navbar-toggler aria-controls="navbarCollapse" aria-expanded="false" aria-label=("Toggle navigation") data-bs-target="#navbarCollapse" data-bs-toggle="collapse" type="button" 
         span.navbar-toggler-icon
       .d-flex
+        a.navbar-brand href="#{root_path}"  #{current_user.name}
         #navbarNavDarkDropdown.collapse.navbar-collapse
           ul.navbar-nav
             li.nav-item.dropdown
