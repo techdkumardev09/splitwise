@@ -17,13 +17,15 @@ gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 5.0'
 
 group :development, :test do
+  gem 'faker'
+  gem 'fabrication'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'dotenv-rails'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
 end
 
 group :development do
-  gem 'fabrication'
-  gem 'faker'
   gem 'listen', '~> 3.3'
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'spring'
