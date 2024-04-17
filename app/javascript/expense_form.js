@@ -13,7 +13,7 @@ function populateParticipants() {
         $('#participants').append(
           $('<option>', {
             value: user.id,
-            text: user.name,
+            text: user.name || user.email,
           })
         )
       })
